@@ -1,0 +1,62 @@
+.playground-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.item-container {
+  background: #f4f4f4;
+  border: #ccc solid 2px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  flex: 1 1 500px;
+}
+
+.machine-container {
+  flex: 1 0;
+  min-width: 1200px;
+}
+
+.machine-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-item > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 120px;
+  background: white;
+  border: #f7f2f2 solid 2px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.result-item > div > p {
+  color: #00aaff;
+  font-weight: bolder;
+  font-size: 6rem;
+  margin: 0px;
+}
+
+.spin-btn {
+  width: 32em;
+  background: #db2828;
+  border: 1px solid #db2828;
+  color: white;
+  border-radius: 3px;
+  padding: 5px 0px;
+}
