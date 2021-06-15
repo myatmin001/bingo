@@ -1,18 +1,14 @@
-import React from 'react'
-import './MachineNumberItem.css';
-import { getRandomNumber } from '../../common';
+import React, { useContext } from 'react';
+import BingoContext from '../../context/bingo/bingoContext';
+import './MachineNumberItem.css'
 
-const MachineNumberItem = () => {
-    let numberItems = [];
-    for (var i = 1; i < 76; i++) {
-        numberItems.push(i);
-    } 
+const MachineNumberItem = ({numbers}) => {
+
+    const bingoContext = useContext(BingoContext);
+    const {randomSpinNumbers} = bingoContext;
+    console.log(randomSpinNumbers);
     return (
-        <div className="number-container">  
-            {numberItems.map((numberItems) => 
-               {getRandomNumber === numberItems?  <div key={numberItems} className="picked-spin-number">{numberItems}</div> :  <div key={numberItems}>{numberItems}</div>}
-               )}
-        </div>
+        <div className={`${randomSpinNumbers.includes(numbers) && "picked-spin-number"}`}>{numbers}</div>
     )
 }
 

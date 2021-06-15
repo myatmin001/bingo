@@ -2,13 +2,15 @@ import React,{ useReducer } from 'react';
 import BingoContext from './bingoContext';
 import BingoReducer from './bingoReducer';
 import {
+    GET_SPIN_NUMBER,
     GET_USER
 } from '../type'
 
 const BingoState = (props) => {
 
     const initialState = {
-        numbers: 4
+        numbers: 4,
+        randomSpinNumbers: []
     }
 
     const [state,dispatch] = useReducer(BingoReducer,initialState);
@@ -18,12 +20,19 @@ const BingoState = (props) => {
         dispatch({type: GET_USER,payload: numbers});
     }
 
+    //SPIN ACTION
+    const getSpinNumber = () => {
+        dispatch({type: GET_SPIN_NUMBER})
+    }
+
     return (
         <BingoContext.Provider
             value = {
                 {
                     numbers: state.numbers,
-                    getUser
+                    randomSpinNumbers: state.randomSpinNumbers,
+                    getUser,
+                    getSpinNumber
                 }
             }
         >

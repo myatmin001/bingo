@@ -1,12 +1,12 @@
 import './Playground.css';
 import React,{useContext,useEffect,Fragment} from 'react';
 import BingoContext from '../../context/bingo/bingoContext'
-import MachineNumberItem from '../Numbers/MachineNumberItem';
+import MachineNumbers from '../Numbers/MachineNumbers';
 
 const Playground = ({ match }) => {
 
     const bingoContext = useContext(BingoContext);
-    const {numbers,getUser} = bingoContext;
+    const {numbers,getUser,getSpinNumber} = bingoContext;
 
     useEffect(() => {
         getUser(match.params.numbers)
@@ -26,10 +26,10 @@ const Playground = ({ match }) => {
                         </div>
                     </div>
                     <div className="result-item">
-                        <button className="spin-btn">SPIN</button>
+                        <button className="spin-btn" onClick={getSpinNumber}>SPIN</button>
                     </div>
                     <Fragment>
-                        <MachineNumberItem />
+                        <MachineNumbers />
                     </Fragment>
                 </div>
             </div>

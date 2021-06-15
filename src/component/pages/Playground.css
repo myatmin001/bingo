@@ -59,4 +59,9 @@
   color: white;
   border-radius: 3px;
   padding: 5px 0px;
+  cursor: pointer;
+}
+
+.spin-btn:hover {
+  opacity: 0.5;
 }
