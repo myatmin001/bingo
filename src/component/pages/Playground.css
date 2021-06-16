@@ -12,11 +12,12 @@
   padding: 10px;
   text-align: center;
   flex: 1 1 500px;
+  height: 50vh;
 }
 
 .machine-container {
   flex: 1 0;
-  min-width: 1200px;
+  min-width: 1173px;
 }
 
 .machine-item-container {
@@ -64,4 +65,49 @@
 
 .spin-btn:hover {
   opacity: 0.5;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 185px;
+  background-color: #fff;
+}
+
+.card-numbers {
+  width: 175px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+.card-numbers > div {
+  background-color: #f1f1f1;
+  width: 25px;
+  height: 32px;
+  margin: 5px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header {
+  width: 100%;
+  background: #287ebf;
+  color: white;
+}
+
+.card-header > h3 {
+  margin: 0;
+  padding: 10px;
 }

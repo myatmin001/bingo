@@ -1,5 +1,6 @@
-import { getRandomNumber } from "../../common"
+
 import{
+    DISPLAY_MACHINE_NUMBERS,
     GET_SPIN_NUMBER,
     GET_USER
 } from "../type"
@@ -12,13 +13,15 @@ export default (state,action) => {
                 ...state,
                 numbers: action.payload
             }
-        case GET_SPIN_NUMBER:
-            let randomSpinNumbers = [];
-            let randomNumber = getRandomNumber();
-            randomSpinNumbers.push(randomNumber.toString());
+        case DISPLAY_MACHINE_NUMBERS:
             return{
                 ...state,
-                randomSpinNumbers: randomSpinNumbers
+                numberItems: action.payload
+            }
+        case GET_SPIN_NUMBER:
+            return{
+                ...state,
+                randomSpinNumbers: action.payload
             }
         default:
             return state;

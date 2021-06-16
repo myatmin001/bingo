@@ -1,20 +1,19 @@
-import React from 'react'
+import React,{ useContext, useEffect } from 'react'
 import './MachineNumbers.css';
 import MachineNumberItem from './MachineNumberItem';
+import BingoContext from '../../context/bingo/bingoContext';
 
-const MachineNumbers = () => {
-    let numberItems = [];
-    for (var i = 1; i < 76; i++) {
-        if(i<=9){
-            numberItems.push("0"+i.toString())
-        }else{
-            numberItems.push(i.toString());
-        }
-    } 
+const MachineNumbers = () => { 
+    const bingoContext = useContext(BingoContext);
+    const {numberItems,displayMachineNumbers} = bingoContext;
+
+    useEffect(() => {
+        displayMachineNumbers(1,75);
+        // eslint-disable-next-line
+    }, [])
     return (
         <div className="number-container">
             {numberItems.map(numberItems => (
-                // <div key={numberItems}>{numberItems}</div>
                 <MachineNumberItem key={numberItems} numbers={numberItems}/>
             ))}
         </div>

@@ -2,13 +2,15 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .number-container > div {
   background-color: white;
   width: 45px;
   height: 39px;
-  margin: 10px;
+  margin: 1px;
   text-align: center;
   line-height: 75px;
   font-size: 16px;
