@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-items: flex-start;
 }
 
 .item-container {
@@ -12,7 +13,15 @@
   padding: 10px;
   text-align: center;
   flex: 1 1 500px;
-  height: 50vh;
+}
+
+.item-card-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: white;
+  border: none;
 }
 
 .machine-container {
@@ -75,6 +84,8 @@
   justify-content: center;
   width: 185px;
   background-color: #fff;
+  border: #ccc solid 2px;
+  margin: 10px;
 }
 
 .card-numbers {

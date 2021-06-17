@@ -1,8 +1,10 @@
 import React,{ useReducer } from 'react';
 import BingoContext from './bingoContext';
 import BingoReducer from './bingoReducer';
-import { getRandomNumber } from "../../common"
+import { getRandomNumber, removeArray, shuffle } from "../../common"
 import {
+    DISPLAY_BINGO_CARD_NUMBERS,
+    DISPLAY_EACH_BINGO_CARD_NUMBERS,
     DISPLAY_MACHINE_NUMBERS,
     GET_SPIN_NUMBER,
     GET_USER
@@ -13,7 +15,9 @@ const BingoState = (props) => {
     const initialState = {
         numbers: 4,
         numberItems: [],
-        randomSpinNumbers: []
+        randomSpinNumbers: [],
+        bingoCardNumbers: [],
+        bingoEachCardNumbers:[]
     }
 
     const [state,dispatch] = useReducer(BingoReducer,initialState);
@@ -40,15 +44,53 @@ const BingoState = (props) => {
     const getSpinNumber = () => {
         var myArray = state.numberItems;
         var toRemove = state.randomSpinNumbers;
-        myArray  = myArray.filter( function( el ) {
-            return toRemove.indexOf( el ) < 0;
-          } );
-        console.log(myArray );
+        // myArray  = myArray.filter( function( el ) {
+        //     return toRemove.indexOf( el ) < 0;
+        //   } );
+        var myArr = removeArray(myArray,toRemove)
+        console.log(myArr);
         const randomSpinNumbers = state.randomSpinNumbers;
-        const randomNumber = getRandomNumber(myArray)!==undefined && getRandomNumber(myArray).toString();
+        const randomNumber = getRandomNumber(myArr)!==undefined && getRandomNumber(myArr).toString();
         randomSpinNumbers.push(randomNumber);
         console.log(randomSpinNumbers);
         dispatch({type: GET_SPIN_NUMBER,payload:randomSpinNumbers})
+    }
+
+    //Display number for each bingo card number
+    const displayBingoCardNumbers = (num) => {
+
+        let numberItems = [];
+        for (var i = 1; i <= 75; i++) {
+            if(i<=9){
+                numberItems.push("0"+i.toString())
+            }else{
+                numberItems.push(i.toString());
+            }
+        } 
+
+        
+        let cardNumbers = [];
+        for (let x = 0; x < num; x++) {
+            let bingoRandomNumbers = [];
+            for (let index = 0; index <25; index++) {
+                if(index === 12){
+                    bingoRandomNumbers.push("*");
+                }else{
+                    bingoRandomNumbers.push(getRandomNumber(removeArray(numberItems,bingoRandomNumbers))!==undefined && getRandomNumber(removeArray(numberItems,bingoRandomNumbers)).toString());
+                }
+            }
+            cardNumbers.push(bingoRandomNumbers);
+        }
+        // 
+        dispatch({type: DISPLAY_BINGO_CARD_NUMBERS,payload: cardNumbers})
+    }
+
+    //Each Bingo Card Number
+    const displayBingoEachCardNumber=(displayCardNumbers)=>{
+        let cardNumbers = displayCardNumbers;
+        shuffle(cardNumbers);
+        dispatch({type: DISPLAY_EACH_BINGO_CARD_NUMBERS,payload: cardNumbers});
+
     }
 
     return (
@@ -58,9 +100,13 @@ const BingoState = (props) => {
                     numbers: state.numbers,
                     randomSpinNumbers: state.randomSpinNumbers,
                     numberItems: state.numberItems,
+                    bingoCardNumbers: state.bingoCardNumbers,
+                    bingoEachCardNumbers: state.bingoEachCardNumbers,
                     getUser,
                     displayMachineNumbers,
-                    getSpinNumber
+                    getSpinNumber,
+                    displayBingoCardNumbers,
+                    displayBingoEachCardNumber
                 }
             }
         >
