@@ -1,7 +1,6 @@
-import React,{ Fragment, useContext,useEffect, useState } from 'react'
+import React,{ Fragment, useContext,useEffect } from 'react'
 import BingoCardNumberItem from './BingoCardNumberItem'
 import BingoContext from '../../context/bingo/bingoContext'
-import { getRandomNumber, removeArray } from '../../common'
 
 const BingoCards = () => {
 
@@ -10,13 +9,14 @@ const BingoCards = () => {
 
     useEffect(() => {
         displayBingoCardNumbers(numbers);
+        // eslint-disable-next-line
     }, [numbers])
 
-    console.log(bingoCardNumbers);
+    // console.log(bingoCardNumbers);
 
     const bingoCardItem = [];
     for (let index = 0; index < numbers; index++) {
-        console.log(bingoCardNumbers[index]);
+        // console.log(bingoCardNumbers[index]);
         bingoCardItem.push(<BingoCardNumberItem key={index} cardIndex={index} cardNumbers = {bingoCardNumbers[index]} />);
     }
 

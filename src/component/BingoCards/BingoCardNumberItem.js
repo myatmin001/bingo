@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from 'react'
+import React, { useContext } from 'react'
 import BingoContext from '../../context/bingo/bingoContext'
 
 const BingoCardNumberItem = ({cardIndex,cardNumbers}) => {
@@ -9,7 +9,7 @@ const BingoCardNumberItem = ({cardIndex,cardNumbers}) => {
     return (
         <div className="card-container">
             <div className="card-item card-header">
-                <h3>BINGO CARD {cardIndex}</h3>
+                <h3>BINGO CARD {cardIndex + 1}</h3>
             </div>
             <div className="card-item card-numbers">
                 {

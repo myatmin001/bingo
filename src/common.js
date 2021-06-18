@@ -27,3 +27,29 @@ export const shuffle = (array) => {
     }
     return array;
 }
+
+export const getIndexOfEachCardNumber = (arr,k) => {
+    if (!arr){
+        return [];
+    }
+    var indexArr=[];
+    for(var i=0; i<arr.length; i++){
+        var index = arr[i].indexOf(k);
+        if (index > -1){
+            indexArr.push([i, index]);
+        }
+    }
+    
+    return indexArr;
+}
+
+export const isItemInArray = (array1, array2) => {
+    return JSON.stringify(array1) === JSON.stringify(array2);
+}
+
+export const dupArr = (array1,array2) => {
+    var duplicates = array1.filter(function(val) {
+        return array2.indexOf(val) !== -1;
+      });
+    return duplicates;
+}

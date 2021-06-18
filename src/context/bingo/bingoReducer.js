@@ -23,7 +23,8 @@ export default (state,action) => {
         case GET_SPIN_NUMBER:
             return{
                 ...state,
-                randomSpinNumbers: action.payload
+                randomSpinNumbers: action.payload[0],
+                indexNumbersOfEachCrads:action.payload[1]
             }
         case DISPLAY_BINGO_CARD_NUMBERS:
             return{
