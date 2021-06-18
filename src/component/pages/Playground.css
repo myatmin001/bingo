@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   align-items: flex-start;
 }
 
@@ -12,7 +11,7 @@
   margin: 10px;
   padding: 10px;
   text-align: center;
-  flex: 1 1 500px;
+  flex: 1 1;
 }
 
 .item-card-container {
@@ -22,11 +21,12 @@
   flex-wrap: wrap;
   background-color: white;
   border: none;
+  padding-top: 0px;
+  margin-top: 0px;
 }
 
 .machine-container {
-  flex: 1 0;
-  min-width: 1173px;
+  flex: 2 0;
 }
 
 .machine-item-container {
@@ -150,4 +150,10 @@
   background-color: black;
   color: white;
   border-color: white;
+}
+
+@media (max-width: 1338px) {
+  .machine-container {
+    flex: unset;
+  }
 }
