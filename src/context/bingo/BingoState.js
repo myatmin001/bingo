@@ -1,13 +1,14 @@
 import React,{ useReducer } from 'react';
 import BingoContext from './bingoContext';
 import BingoReducer from './bingoReducer';
-import { dupArr, getIndexOfEachCardNumber, getRandomNumber, isItemInArray, removeArray, shuffle } from "../../common"
+import { dupArr, getIndexOfEachCardNumber, getRandomNumber, isItemInArray, removeArray } from "../../common"
 import {
     DISPLAY_BINGO_CARD_NUMBERS,
-    DISPLAY_EACH_BINGO_CARD_NUMBERS,
     DISPLAY_MACHINE_NUMBERS,
     GET_SPIN_NUMBER,
-    GET_USER
+    GET_USER,
+    RESTART_STATE,
+    WINNING_STATE
 } from '../type'
 
 const BingoState = (props) => {
@@ -17,7 +18,6 @@ const BingoState = (props) => {
         numberItems: [],
         randomSpinNumbers: [],
         bingoCardNumbers: [],
-        bingoEachCardNumbers:[],
         winnningCombinations: [
             [0,1,2,3,4],
             [4,8,16,20],
@@ -32,7 +32,9 @@ const BingoState = (props) => {
             [2,7,17,22],
             [3,8,13,18,23]
         ],
-        indexNumbersOfEachCrads:[]
+        indexNumbersOfEachCrads:[],
+        winningContent: '',
+        winningState: false
 
     }
 
@@ -110,8 +112,11 @@ const BingoState = (props) => {
                         return a - b;
                       });
                     if(isItemInArray(state.winnningCombinations[i],dup)){
-                            alert(`Winner is Bingo Card ${index+1}`);
-                            break;
+                        // alert(`Winner is Bingo Card ${index+1}`);
+                        var content=`Winner is Bingo Card ${index+1}`;
+                        var wState = true;
+                        dispatch({type:WINNING_STATE,payload: [content,wState]})
+                        break;
                     }
                 }
 
@@ -144,12 +149,9 @@ const BingoState = (props) => {
         dispatch({type: DISPLAY_BINGO_CARD_NUMBERS,payload: cardNumbers})
     }
 
-    //Each Bingo Card Number
-    const displayBingoEachCardNumber=(displayCardNumbers)=>{
-        let cardNumbers = displayCardNumbers;
-        shuffle(cardNumbers);
-        dispatch({type: DISPLAY_EACH_BINGO_CARD_NUMBERS,payload: cardNumbers});
-
+    //Click Restart Button
+    const clickRestBtn = () => {
+        dispatch({type: RESTART_STATE});
     }
 
     return (
@@ -160,12 +162,13 @@ const BingoState = (props) => {
                     randomSpinNumbers: state.randomSpinNumbers,
                     numberItems: state.numberItems,
                     bingoCardNumbers: state.bingoCardNumbers,
-                    bingoEachCardNumbers: state.bingoEachCardNumbers,
+                    winningContent: state.winningContent,
+                    winningState: state.winningState,
                     getUser,
                     displayMachineNumbers,
                     getSpinNumber,
                     displayBingoCardNumbers,
-                    displayBingoEachCardNumber
+                    clickRestBtn
                 }
             }
         >

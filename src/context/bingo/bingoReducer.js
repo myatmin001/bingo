@@ -1,10 +1,11 @@
 
 import{
     DISPLAY_BINGO_CARD_NUMBERS,
-    DISPLAY_EACH_BINGO_CARD_NUMBERS,
     DISPLAY_MACHINE_NUMBERS,
     GET_SPIN_NUMBER,
-    GET_USER
+    GET_USER,
+    RESTART_STATE,
+    WINNING_STATE
 } from "../type"
 
 // eslint-disable-next-line
@@ -31,10 +32,19 @@ export default (state,action) => {
                 ...state,
                 bingoCardNumbers: action.payload
             }
-        case DISPLAY_EACH_BINGO_CARD_NUMBERS:
+        case WINNING_STATE:
             return{
                 ...state,
-                bingoEachCardNumbers: action.payload
+                winningContent: action.payload[0],
+                winningState: action.payload[1]
+            }
+        case RESTART_STATE:
+            return{
+                ...state,
+                randomSpinNumbers: [],
+                indexNumbersOfEachCrads:[],
+                winningContent: '',
+                winningState: false
             }
         default:
             return state;

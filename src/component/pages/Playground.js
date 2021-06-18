@@ -8,7 +8,7 @@ import BingoCards from '../BingoCards/BingoCards';
 const Playground = ({ match }) => {
 
     const bingoContext = useContext(BingoContext);
-    const {randomSpinNumbers,getUser,getSpinNumber} = bingoContext;
+    const {randomSpinNumbers,winningContent,winningState,getUser,getSpinNumber,clickRestBtn} = bingoContext;
 
     useEffect(() => {
         getUser(match.params.numbers)
@@ -38,6 +38,11 @@ const Playground = ({ match }) => {
             <div className="item-container item-card-container">
                 <BingoCards />
             </div>
+            {winningState && 
+                <div className="winning-message" id="winningMessage">
+                    <div>{winningContent}</div>
+                    <button onClick={clickRestBtn}>Restart</button>
+                </div>}
         </div>
     )
 }
