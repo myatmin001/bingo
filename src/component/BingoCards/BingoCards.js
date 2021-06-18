@@ -12,11 +12,8 @@ const BingoCards = () => {
         // eslint-disable-next-line
     }, [numbers])
 
-    // console.log(bingoCardNumbers);
-
     const bingoCardItem = [];
     for (let index = 0; index < numbers; index++) {
-        // console.log(bingoCardNumbers[index]);
         bingoCardItem.push(<BingoCardNumberItem key={index} cardIndex={index} cardNumbers = {bingoCardNumbers[index]} />);
     }
 

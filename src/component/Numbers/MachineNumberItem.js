@@ -6,7 +6,6 @@ const MachineNumberItem = ({numbers}) => {
 
     const bingoContext = useContext(BingoContext);
     const {randomSpinNumbers} = bingoContext;
-    // console.log(randomSpinNumbers);
     return (
         <div className={`${randomSpinNumbers.includes(numbers) && "picked-spin-number"}`}>{numbers}</div>
     )

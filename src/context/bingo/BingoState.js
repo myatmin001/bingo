@@ -62,14 +62,10 @@ const BingoState = (props) => {
     const getSpinNumber = () => {
         var myArray = state.numberItems;
         var toRemove = state.randomSpinNumbers;
-        var myArr = removeArray(myArray,toRemove)
-        // console.log(myArr);
+        var myArr = removeArray(myArray,toRemove);
         const randomSpinNumbers = state.randomSpinNumbers;
         const randomNumber = getRandomNumber(myArr)!==undefined && getRandomNumber(myArr).toString();
         randomSpinNumbers.push(randomNumber);
-        // if(randomSpinNumbers.length>=4){
-        //     console.log("Push Index and Decide Number");
-        // }
         var indexCardNumbers = state.indexNumbersOfEachCrads;
         if(indexCardNumbers.length === 0){
             for (let j = 0; j < state.numbers; j++) {
@@ -101,10 +97,6 @@ const BingoState = (props) => {
 
         if(state.randomSpinNumbers.length >= 4){
             for (let index = 0; index < state.indexNumbersOfEachCrads.length; index++) {
-                // if(isItemInArray(state.winnningCombinations,state.indexNumbersOfEachCrads[index])){
-                //     alert(`Winner is Bingo Card ${index+1}`);
-                //     break;
-                // }
 
                 for (let i = 0; i < state.winnningCombinations.length; i++) {
                     var dup = dupArr(state.indexNumbersOfEachCrads[index],state.winnningCombinations[i]);
@@ -112,7 +104,6 @@ const BingoState = (props) => {
                         return a - b;
                       });
                     if(isItemInArray(state.winnningCombinations[i],dup)){
-                        // alert(`Winner is Bingo Card ${index+1}`);
                         var content=`Winner is Bingo Card ${index+1}`;
                         var wState = true;
                         dispatch({type:WINNING_STATE,payload: [content,wState]})
